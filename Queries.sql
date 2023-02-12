@@ -52,3 +52,33 @@ ALTER TABLE tblGender
 ADD CONSTRAINT DF_tblGender_genderId
 DEFAULT 3 GenderId
 
+select round(avg(replacement_cost),2)
+from film;
+
+--Difference between having and where clause 
+select company ,sum(sales) from finance_table
+where company!='Google'
+group by company;
+
+-- Having clause will allow to use aggregate function to filter out the records after using group by
+select company ,sum(sales) from finance_table
+where company!='Google'
+group by company
+having sum(sales)>2000;
+
+
+select customer_id,sum(amount) from public.payment
+where staff_id =2
+group by customer_id
+having sum(amount) > 110 ;
+
+
+select count(*) FROM public.film
+where title ILIKE 'J%';
+
+SELECT first_name, last_name from public.customer
+where first_name ILIKE 'E%' and address_id <500
+ORDER BY customer_id DESC
+limit 1;
+
+--Overview of JOINS
