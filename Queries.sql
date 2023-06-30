@@ -82,3 +82,75 @@ ORDER BY customer_id DESC
 limit 1;
 
 --Overview of JOINS
+--FULL INNER JOIN / INNER JOIN
+
+--OUTER JOIN
+    --FULL OUTER JOIN / OUTER JOIN
+    --LEFT OUTER JOIN / LEFT JOIN
+    --RIGHT OUTER JOIN / RIGHT JOIN
+
+select email,district from public.customer 
+LEFT OUTER JOIN public.address
+ON customer.address_id = address.address_id
+WHERE district='California';
+
+SELECT title,actor.first_name,actor.last_name  FROM public.film
+INNER JOIN public.film_actor
+on film.film_id = film_actor.film_id
+INNER JOIN actor
+on film_actor.actor_id=actor.actor_id
+where film_actor.actor_id= (select actor_id from public.actor where first_name='Nick' and  last_name='Wahlberg')         
+
+
+--UNION (rows of table1 + rows of table2)
+select * from table1
+UNION
+select * from table2
+
+
+--pgadmin commands
+SHOW all;
+
+SHOW TIMEZONE;
+Asia/Kolkata
+
+
+select NOW() --will give timezone with timestamp
+2023-02-12 20:31:51.499595+05:30
+
+SELECT TIMEOFDAY()
+Sun Feb 12 20:31:26.334998 2023 IST
+
+SELECT CURRENT_TIME
+20:33:15.546242+05:30
+
+SELECT CURRENT_DATE
+2023-02-12
+
+--Extract function (allows us to extract or obtain sub-component of the date value)
+
+EXTRACT(YEAR FROM date_col)
+
+--AGE function calculate the current age
+AGE(date_col)
+
+--TO_CHAR general function to convert datatype to text
+
+TO_CHAR(date_col, 'mm-dd-yyyy')
+
+
+select extract(YEAR from payment_date) as yearr
+from public.payment;
+
+select distinct(TO_CHAR(payment_date,'MONTH'))
+FROM public.payment;
+
+
+select TO_CHAR(payment_date,'DAY'),count(*)
+from public.payment
+group by TO_CHAR(payment_date,'DAY');
+
+
+
+
+
